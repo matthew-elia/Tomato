@@ -57,9 +57,9 @@ class WelcomeController extends Controller {
 							
 							$subCrawler = $subClient->request('GET', 'https://www.rottentomatoes.com/m/'.$rt_id[$i].'');
 
-								$subNodeValues = $subCrawler->each(function ($subNode, $sub_i) {
+								$subNodeValues = $subCrawler->filter('#jsonLdSchema')->each(function ($subNode, $i) {
 										$subData = $subNode->html();
-										dump($sub_i." :  : ".$subData);
+										dump($subData);
 								});
 						}
 					});
