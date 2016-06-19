@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use Symfony\Component\DomCrawler\Crawler;
+use Goutte\Client;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -30,7 +33,41 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
-	}
+		$data;
+		$subData;
+		$rt_id = [];
 
-}
+		$client = new Client();
+		$crawler = new Crawler();
+
+		$nodeValues = [];
+		$subNodeValues = [];
+
+			$crawler = $client->request('GET', 'https://www.rottentomatoes.com/');
+			
+				$nodeValues = $crawler->filter('#Top-Box-Office > tr')->each(function ($node, $i) {
+
+						if($i <=4){
+
+							$data = $node->html();
+							$rt_id[$i] = $node->attr('data-movie-id');
+							
+							$subClient = new Client();
+							$subCrawler = new Crawler();
+							
+							$subCrawler = $subClient->request('GET', 'https://www.rottentomatoes.com/m/'.$rt_id[$i].'');
+
+								$subNodeValues = $subCrawler->each(function ($subNode, $sub_i) {
+										$subData = $subNode->html();
+										dump($sub_i." :  : ".$subData);
+								});
+						}
+					});
+
+							
+
+			return view('welcome');
+
+		}
+
+	}

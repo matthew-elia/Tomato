@@ -139,11 +139,13 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'App\Providers\AppServiceProvider',
-		'App\Providers\BusServiceProvider',
-		'App\Providers\ConfigServiceProvider',
-		'App\Providers\EventServiceProvider',
-		'App\Providers\RouteServiceProvider',
+		App\Providers\AppServiceProvider::class,
+		App\Providers\BusServiceProvider::class,
+		App\Providers\ConfigServiceProvider::class,
+		App\Providers\EventServiceProvider::class,
+		App\Providers\RouteServiceProvider::class,
+		Weidner\Goutte\GoutteServiceProvider::class,
+
 
 	],
 
@@ -192,7 +194,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-
+		'Goutte' 		=>  Weidner\Goutte\GoutteFacade::class, 
 	],
 
 ];
