@@ -53,21 +53,14 @@ var vm = new Vue({
 document.body.addEventListener('keydown', function(e) {
     if(e.keyCode === 39) {
     	if(i<5){
-    		// document.getElementById('page-id-'+i+'').innerHTML = '&#9675';
     		vm.slideRight();
-    	} else {
-    		// document.getElementById('page-id-5').innerHTML = '&#9675';
     	}
-    	// document.getElementById('page-id-'+i+'').innerHTML = '&#9679';
+
     }
     if(e.keyCode === 37) {
     	if(i>1){
-    		// document.getElementById('page-id-'+i+'').innerHTML = '&#9675';
     		vm.slideLeft();
-    	} else {
-    		// document.getElementById('page-id-1').innerHTML = '&#9675';
     	}
-  		// document.getElementById('page-id-'+i+'').innerHTML = '&#9679';
 
     }
 });

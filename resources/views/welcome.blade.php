@@ -112,7 +112,7 @@
 							  				<span class="pull-left" v-if="{{$m->rating}} > 0.70 && {{$m->rating}} < .80"><img src="{{ asset('images/half-star.svg') }}" height="40px"></img></span>
 							  				<span class="pull-left" v-if="{{$m->rating}} >= 0.80"><img src="{{ asset('images/star.svg') }}" height="40px"></img></span>
 							  				<span class="pull-left" v-if="{{$m->rating}} > 0.80 && {{$m->rating}} < .90"><img src="{{ asset('images/half-star.svg') }}" height="40px"></img></span>
-							  				<span class="pull-left" v-if="{{$m->rating}} > 0.90"><img src="{{ asset('images/star.svg') }}" height="40px"></img></span>
+							  				<span class="pull-left" v-if="{{$m->rating}} >= 0.90"><img src="{{ asset('images/star.svg') }}" height="40px"></img></span>
 							  				<span class="pull-right"><h2>{{ $m->rating*100 }} %</h2></span>
 							  		</div>
 
