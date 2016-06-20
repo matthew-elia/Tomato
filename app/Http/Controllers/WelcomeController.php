@@ -67,7 +67,7 @@ class WelcomeController extends Controller {
 									$rating = $subData->aggregateRating->ratingValue;
 									$imgNode = $subNode->filter('#poster_link')->html();
 									
-									DB::insert('insert into movies (title,description,rating,poster_img_url) values (?,?,?,?)',[$subData->name, $subData->description, floatval($rating/100), trim($imgNode)]);
+									DB::insert('insert into movies (title,description,rating,poster_img_url,page_url) values (?,?,?,?,?)',[$subData->name, $subData->description, floatval($rating/100), trim($imgNode), $subData->url]);
 							});
 
 						}
