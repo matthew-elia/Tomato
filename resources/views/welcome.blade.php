@@ -59,7 +59,7 @@
 			<div class="container-fluid">
 
 				<nav class="navbar">
-				  <div class="container-fluid">
+				  <div class="container-fluid" style="padding-left: 40px;padding-right: 40px;padding-top: 10px;">
 				  	<div class="navbar-header">
 				      <a class="navbar-brand pull-left" href="#">In Theaters</a>
 	      			<a class="btn btn-primary pull-right" href="http://" style="">View More</a>
@@ -83,12 +83,21 @@
 						  					{{ $m->title }}
 						  				</h1>
 						  			</div>
+						  			<br>
 										<div class="movie-text">
 							  				{{ $m->description }}
 							  		</div>
+							  		<br>
+							  		<br>
 							  		<div class="movie-rating">
-							  				{{ $m->rating }}
+							  				<span v-if="{{$m->rating}} > .20"><img src="{{ asset('images/star.svg') }}"></img></span>
+							  				<span v-if="{{$m->rating}} > .40"><img src="{{ asset('images/star.svg') }}"></img></span>
+							  				<span v-if="{{$m->rating}} > .60"><img src="{{ asset('images/star.svg') }}"></img></span>
+							  				<span v-if="{{$m->rating}} > .80"><img src="{{ asset('images/star.svg') }}"></img></span>
+							  				<span v-if="{{$m->rating}} == 1.0"><img src="{{ asset('images/star.svg') }}"></img></span>
+							  				<span><b>{{ $m->rating*100 }}%</b></span>
 							  		</div>
+
 			  					</div>
 		  					</div>
 							<div class="col-xs-3">

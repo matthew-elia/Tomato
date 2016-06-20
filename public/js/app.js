@@ -11580,8 +11580,7 @@ var _vueResource2 = _interopRequireDefault(_vueResource);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var topFiveMovieIdArray = ['the_conjuring_2', 'warcraft', 'now_you_see_me', 'foo', 'bar'];
-var i = 0;
+var i = 1;
 
 _vue2.default.use(_vueResource2.default);
 _vue2.default.http.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -11594,7 +11593,7 @@ new _vue2.default({
 	},
 	methods: {
 		slideLeft: function slideLeft() {
-			if (i > 0) {
+			if (i > 1) {
 				i--;
 				console.log('slide left: ' + i + '');
 				document.getElementById('data-id-' + i + '').style.display = 'block';

@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 
-
-var topFiveMovieIdArray = ['the_conjuring_2', 'warcraft', 'now_you_see_me', 'foo', 'bar'];
-var i = 0;
+var i = 1;
 
 Vue.use(VueResource);
 Vue.http.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -16,7 +14,7 @@ new Vue({
   },
 	methods: {
 		slideLeft: function (){
-			if(i>0) {
+			if(i>1) {
 				i--;
 				console.log('slide left: '+i+'');
 				document.getElementById('data-id-'+i+'').style.display = 'block';
