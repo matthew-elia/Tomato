@@ -43,6 +43,9 @@
 				font-weight: bold;
 				cursor: pointer;
 			}
+			#data-id-1{
+				display: block;
+			}
 			#data-id-2,#data-id-3,#data-id-4,#data-id-5 {
 				display:none;
 			}
@@ -50,48 +53,50 @@
 	</head>
 	<body>
 
+
+		<div id="app">
+
 			<div class="container-fluid">
 
 				<nav class="navbar">
 				  <div class="container-fluid">
 				  	<div class="navbar-header">
 				      <a class="navbar-brand pull-left" href="#">In Theaters</a>
-				      <a class="btn btn-primary pull-right" href="#">View More</a>
+	      			<a class="btn btn-primary pull-right" href="http://" style="">View More</a>
 				  	</div>
 		      	<p class="sub-navbar-brand">Top Movies This Week</p>
 		      </div>
 				</nav>
 
 			</div>
-
-		<div id="app">
-
 			<div class="container-fluid">
 					
 					<span class="slideLeft" v-on:click="slideLeft"> < </span>
 		  		<div class="container" style="display: inline-flex;width: 90%">
 					@foreach($movies as $m)
-						<div class="row">
-							<div class="col-xs-9">
-		  				<div id="data-id-{{$m->id}}" style="height:auto;width:100%;">
-		  					<div class="" style="width:80%;background-color: white;">
-					  			<div class="movie-title">
-					  				<h1>
-					  					{{ $m->title }}
-					  				</h1>
-					  			</div>
-									<div class="movie-text">
-						  				{{ $m->description }}
-						  		</div>
-						  		<div class="movie-rating">
-						  				{{ $m->rating }}
-						  		</div>
+	  				<div id="data-id-{{$m->id}}" style="height:auto;width: 80%;padding: 30px;margin-left: 10%;margin-right: 10%;">
+							<div class="row">
+								<div class="col-xs-9">
+		  						<div class="" style="width:80%;background-color: white;">
+						  			<div class="movie-title">
+						  				<h1>
+						  					{{ $m->title }}
+						  				</h1>
+						  			</div>
+										<div class="movie-text">
+							  				{{ $m->description }}
+							  		</div>
+							  		<div class="movie-rating">
+							  				{{ $m->rating }}
+							  		</div>
+			  					</div>
 		  					</div>
-		  				</div>
-		  				</div>
 							<div class="col-xs-3">
-								<div class="movie-poster" style="height:500px;width:100%;background-color: red;display:inline-flex;"></div>
+								<div class="movie-poster" style="width:100%;">
+									{!! $m->poster_img_url !!}
+								</div>
 							</div>
+			  		</div>
 			  		</div>
 		  		@endforeach
 		  		</div>

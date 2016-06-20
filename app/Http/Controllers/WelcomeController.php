@@ -61,14 +61,13 @@ class WelcomeController extends Controller {
 							
 							$subCrawler = $subClient->request('GET', 'https://www.rottentomatoes.com/m/'.$rt_id[$i].'');
 
-							$subNodeValues = $subCrawler->filter('#jsonLdSchema')->each(function ($subNode, $sub_i) {
-									
-									$subData = $subNode->text();
+							$subNodeValues = $subCrawler->each(function ($subNode, $j) {
+									$subData = $subNode->filter('#jsonLdSchema')->text();
 									$subData = json_decode($subData);
 									$rating = $subData->aggregateRating->ratingValue;
-									$floatValRating = floatval($rating/100);
+									$imgNode = $subNode->filter('#poster_link')->html();
 									
-									DB::insert('insert into movies (title,description,rating,poster_img_url) values (?,?,?,?)',[$subData->name, $subData->description, $floatValRating, $subData->url]);
+									DB::insert('insert into movies (title,description,rating,poster_img_url) values (?,?,?,?)',[$subData->name, $subData->description, floatval($rating/100), trim($imgNode)]);
 							});
 
 						}
