@@ -3,6 +3,9 @@
 use Symfony\Component\DomCrawler\Crawler;
 use Goutte\Client;
 
+use DB;
+use App\Movie as Movie;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -33,6 +36,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
+		DB::table('movies')->truncate();
 		$data;
 		$subData;
 		$rt_id = [];
@@ -57,20 +61,24 @@ class WelcomeController extends Controller {
 							
 							$subCrawler = $subClient->request('GET', 'https://www.rottentomatoes.com/m/'.$rt_id[$i].'');
 
-								$subNodeValues = $subCrawler->filter('#jsonLdSchema')->each(function ($subNode, $i) {
-										$subData = $subNode->text();
-										$subData = json_decode($subData);
-										// dump($subData);
-										dump($subData->name);
-										dump($subData->description);
-										dump($subData->aggregateRating->ratingValue);
-								});
+							$subNodeValues = $subCrawler->filter('#jsonLdSchema')->each(function ($subNode, $sub_i) {
+									
+									$subData = $subNode->text();
+									$subData = json_decode($subData);
+									$rating = $subData->aggregateRating->ratingValue;
+									$floatValRating = floatval($rating/100);
+									
+									DB::insert('insert into movies (title,description,rating,poster_img_url) values (?,?,?,?)',[$subData->name, $subData->description, $floatValRating, $subData->url]);
+							});
+
 						}
+
+
 					});
 
-							
-
-			return view('welcome');
+			$movies = Movie::all();
+			// dd($movies);
+			return view('welcome')->with('movies', $movies);
 
 		}
 

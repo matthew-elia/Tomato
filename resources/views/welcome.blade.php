@@ -11,14 +11,9 @@
 				padding: 0;
 				width: 100%;
 				height: 100%;
-				color: #B0BEC5;
-				display: table;
-				font-weight: 100;
-				font-family: 'Lato';
 			}
 
 			.container {
-				text-align: center;
 				display: table-cell;
 				vertical-align: middle;
 			}
@@ -48,6 +43,9 @@
 				font-weight: bold;
 				cursor: pointer;
 			}
+			#data-id-2,#data-id-3,#data-id-4,#data-id-5 {
+				display:none;
+			}
 		</style>
 	</head>
 	<body>
@@ -67,18 +65,35 @@
 			</div>
 
 		<div id="app">
-		
-			<div class="container-fluid text-center">
+
+			<div class="container-fluid">
 					
 					<span class="slideLeft" v-on:click="slideLeft"> < </span>
-
 		  		<div class="container" style="display: inline-flex;width: 90%">
-						<div class="movie-text" style="height:500px;width:70%;background-color: purple;">
-			  				@{{ message }}
+					@foreach($movies as $m)
+						<div class="row">
+							<div class="col-xs-9">
+		  				<div id="data-id-{{$m->id}}" style="height:auto;width:100%;">
+		  					<div class="" style="width:80%;background-color: white;">
+					  			<div class="movie-title">
+					  				<h1>
+					  					{{ $m->title }}
+					  				</h1>
+					  			</div>
+									<div class="movie-text">
+						  				{{ $m->description }}
+						  		</div>
+						  		<div class="movie-rating">
+						  				{{ $m->rating }}
+						  		</div>
+		  					</div>
+		  				</div>
+		  				</div>
+							<div class="col-xs-3">
+								<div class="movie-poster" style="height:500px;width:100%;background-color: red;display:inline-flex;"></div>
+							</div>
 			  		</div>
-						<div class="movie-poster" style="height:500px;width:30%;background-color: red;">
-			  				@{{ message }}
-			  		</div>
+		  		@endforeach
 		  		</div>
 
 					<span class="slideRight" v-on:click="slideRight"> > </span>
@@ -88,5 +103,6 @@
 
 		</div>
 		<script src="{{ elixir('js/app.js') }}"></script>
+
 	</body>
 </html>

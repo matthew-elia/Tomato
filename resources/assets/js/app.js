@@ -16,30 +16,25 @@ new Vue({
   },
 	methods: {
 		slideLeft: function (){
-
 			if(i>0) {
 				i--;
-				console.log(this.$http.headers);
 				console.log('slide left: '+i+'');
-				this.$http.get('https://www.rottentomatoes.com/m/'+topFiveMovieIdArray[i]+'', function(success){
-					console.log(success);
-				}, function (error){
-					console.log(error);
-				});
+				document.getElementById('data-id-'+i+'').style.display = 'block';
+				document.getElementById('data-id-'+(i+1)+'').style.display = 'none';
 			}
 		},
 		slideRight: function (){
 			if(i<5) {
 				i++;
-				console.log(this.$http.headers);
 				console.log('slide right: '+i+'');
-				this.$http.get('https://www.rottentomatoes.com/m/'+topFiveMovieIdArray[i]+'', function(success){
-					console.log(success);
-				}, function (error){
-					console.log(error);
-				});
+				document.getElementById('data-id-'+i+'').style.display = 'block';
+				document.getElementById('data-id-'+(i-1)+'').style.display = 'none';
 			}
 			// this.data.movies = this.$http.get('https://www.rottentomatoes.com/m/'+topFiveMovieIdArray[i]+'');
 		}
+	},
+	ready: function () {
+
+				
 	}
 })
